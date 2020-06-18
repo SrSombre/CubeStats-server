@@ -136,16 +136,16 @@ app.post("/echo", (req, res) => {
 // POST endpoint which requires a token for testing purposes, can be removed
 app.post("/authorized_post_request", authMiddleWare, (req, res) => {
   // accessing user that was added to req by the auth middleware
-  const user = req.user;
+  const player = req.player;
   // don't send back the password hash
-  delete user.dataValues["password"];
+  delete player.dataValues["password"];
 
   res.json({
     youPosted: {
       ...req.body,
     },
-    userFoundWithToken: {
-      ...user.dataValues,
+    playerFoundWithToken: {
+      ...player.dataValues,
     },
   });
 });
