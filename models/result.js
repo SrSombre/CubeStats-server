@@ -9,9 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   result.associate = function (models) {
-    result.belongsTo(models.game);
-    result.belongsTo(models.match);
-    result.belongsTo(models.round);
+    result.belongsTo(models.game, {
+      foreignKey: "gameresults",
+    });
+    result.belongsTo(models.match, {
+      foreignKey: "matchresults",
+    });
+    result.belongsTo(models.round, {
+      foreignKey: "roundresults",
+    });
   };
   return result;
 };

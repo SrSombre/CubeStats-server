@@ -9,11 +9,23 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   match.associate = function (models) {
-    match.hasMany(models.game);
-    match.belongsTo(models.round);
-    match.hasMany(models.player);
-    match.hasMany(models.deck);
-    match.hasMany(models.result);
+    match.hasMany(models.game, {
+      foreignKey: "matchgame",
+    });
+
+    match.belongsTo(models.round, {
+      foreignKey: "matchround",
+    });
+
+    match.hasMany(models.player, {
+      foreignKey: "matchplayers",
+    });
+    match.hasMany(models.deck, {
+      foreignKey: "matchdecks",
+    });
+    match.hasMany(models.result, {
+      foreignKey: "matchresults",
+    });
   };
   return match;
 };

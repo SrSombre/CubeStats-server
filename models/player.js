@@ -20,9 +20,15 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   player.associate = function (models) {
-    player.hasMany(models.deck);
-    player.hasMany(models.match);
-    player.hasMany(models.round);
+    player.hasMany(models.deck, {
+      foreignKey: "playerdecks",
+    });
+    player.hasMany(models.match, {
+      foreignKey: "playermatches",
+    });
+    player.hasMany(models.round, {
+      foreignKey: "playerrounds",
+    });
   };
   return player;
 };

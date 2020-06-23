@@ -9,8 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   game.associate = function (models) {
-    game.belongsTo(models.result);
-    game.belongsTo(models.match);
+    game.belongsTo(models.result, {
+      foreignKey: "gameresult",
+    });
+    game.belongsTo(models.match, {
+      foreignKey: "gamematch",
+    });
   };
   return game;
 };

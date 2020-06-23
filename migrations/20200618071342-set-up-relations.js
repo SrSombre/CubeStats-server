@@ -2,34 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn("players", "deckId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "players",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("players", "matchId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "players",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("players", "roundId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "players",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("decks", "cardId", {
+    await queryInterface.addColumn("players", "playerdecks", {
       type: Sequelize.INTEGER,
       references: {
         model: "decks",
@@ -38,10 +11,37 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("decks", "matchId", {
+    await queryInterface.addColumn("players", "playermatches", {
       type: Sequelize.INTEGER,
       references: {
-        model: "decks",
+        model: "matches",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("players", "playerrounds", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "rounds",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("decks", "deckcards", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "cards",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("decks", "deckmatches", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "matches",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -50,13 +50,77 @@ module.exports = {
     await queryInterface.addColumn("decks", "playerId", {
       type: Sequelize.INTEGER,
       references: {
+        model: "players",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("decks", "deckrounds", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "rounds",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("decks", "cubeId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "cubes",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("playerDecks", "playerId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "players",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("playerDecks", "cardId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "cards",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("playerDecks", "deckId", {
+      type: Sequelize.INTEGER,
+      references: {
         model: "decks",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("decks", "roundId", {
+    await queryInterface.addColumn("playerDecks", "cubeId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "cubes",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+
+    await queryInterface.addColumn("cubes", "cubecards", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "cards",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("cubes", "cubedecks", {
       type: Sequelize.INTEGER,
       references: {
         model: "decks",
@@ -65,28 +129,10 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("cubes", "cardId", {
+    await queryInterface.addColumn("cubes", "cuberounds", {
       type: Sequelize.INTEGER,
       references: {
-        model: "cubes",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("cubes", "deckId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "cubes",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("cubes", "roundId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "cubes",
+        model: "rounds",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -95,7 +141,7 @@ module.exports = {
     await queryInterface.addColumn("cards", "deckId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "cards",
+        model: "decks",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -104,49 +150,31 @@ module.exports = {
     await queryInterface.addColumn("cards", "cubeId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "cards",
+        model: "cubes",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("rounds", "playerId", {
+    await queryInterface.addColumn("rounds", "roundplayers", {
       type: Sequelize.INTEGER,
       references: {
-        model: "rounds",
+        model: "players",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("rounds", "deckId", {
+    await queryInterface.addColumn("rounds", "rounddecks", {
       type: Sequelize.INTEGER,
       references: {
-        model: "rounds",
+        model: "decks",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("rounds", "matchId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "rounds",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("rounds", "resultId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "rounds",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("matches", "gameId", {
+    await queryInterface.addColumn("rounds", "roundmatches", {
       type: Sequelize.INTEGER,
       references: {
         model: "matches",
@@ -155,43 +183,25 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("matches", "playerId", {
+    await queryInterface.addColumn("rounds", "roundresults", {
       type: Sequelize.INTEGER,
       references: {
-        model: "matches",
+        model: "results",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("matches", "deckId", {
+    await queryInterface.addColumn("rounds", "cubeId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "matches",
+        model: "cubes",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("matches", "resultId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "matches",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("matches", "roundId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "matches",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-    await queryInterface.addColumn("games", "matchId", {
+    await queryInterface.addColumn("matches", "matchgame", {
       type: Sequelize.INTEGER,
       references: {
         model: "games",
@@ -200,38 +210,83 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("games", "resultId", {
+    await queryInterface.addColumn("matches", "matchplayers", {
       type: Sequelize.INTEGER,
       references: {
-        model: "games",
+        model: "players",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("matches", "matchdecks", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "decks",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("matches", "matchresults", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "results",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("matches", "matchround", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "rounds",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("games", "gamematch", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "matches",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
+    await queryInterface.addColumn("games", "gameresult", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "results",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
 
-    await queryInterface.addColumn("results", "gameId", {
+    await queryInterface.addColumn("results", "gameresults", {
       type: Sequelize.INTEGER,
       references: {
-        model: "results",
+        model: "games",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("results", "matchId", {
+    await queryInterface.addColumn("results", "matchresults", {
       type: Sequelize.INTEGER,
       references: {
-        model: "results",
+        model: "matches",
         key: "id",
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("results", "roundId", {
+    await queryInterface.addColumn("results", "roundresults", {
       type: Sequelize.INTEGER,
       references: {
-        model: "results",
+        model: "rounds",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -240,31 +295,37 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn("players", "deckId");
-    await queryInterface.removeColumn("players", "matchId");
-    await queryInterface.removeColumn("players", "roundId");
-    await queryInterface.removeColumn("decks", "cardId");
-    await queryInterface.removeColumn("decks", "matchId");
+    await queryInterface.removeColumn("players", "playerdecks");
+    await queryInterface.removeColumn("players", "playermatches");
+    await queryInterface.removeColumn("players", "playerrounds");
+    await queryInterface.removeColumn("decks", "deckcards");
+    await queryInterface.removeColumn("decks", "deckmatches");
     await queryInterface.removeColumn("decks", "playerId");
-    await queryInterface.removeColumn("decks", "roundId");
-    await queryInterface.removeColumn("cube", "cardId");
-    await queryInterface.removeColumn("cubes", "deckId");
-    await queryInterface.removeColumn("cubes", "roundId");
+    await queryInterface.removeColumn("decks", "deckrounds");
+    await queryInterface.removeColumn("decks", "cubeId");
+    await queryInterface.removeColumn("playerDecks", "playerId");
+    await queryInterface.removeColumn("playerDecks", "cardId");
+    await queryInterface.removeColumn("playerDecks", "deckId");
+    await queryInterface.removeColumn("playerDecks", "cubeId");
+    await queryInterface.removeColumn("cube", "cubecards");
+    await queryInterface.removeColumn("cubes", "cubedecks");
+    await queryInterface.removeColumn("cubes", "cuberounds");
     await queryInterface.removeColumn("cards", "deckId");
     await queryInterface.removeColumn("cards", "cubeId");
-    await queryInterface.removeColumn("rounds", "playerId");
-    await queryInterface.removeColumn("rounds", "deckId");
-    await queryInterface.removeColumn("rounds", "matchId");
-    await queryInterface.removeColumn("rounds", "resultId");
-    await queryInterface.removeColumn("matches", "gameId");
-    await queryInterface.removeColumn("matches", "playerId");
-    await queryInterface.removeColumn("matches", "deckId");
-    await queryInterface.removeColumn("matches", "resultId");
-    await queryInterface.removeColumn("matches", "roundId");
-    await queryInterface.removeColumn("games", "matchId");
-    await queryInterface.removeColumn("games", "resultId");
-    await queryInterface.removeColumn("results", "gameId");
-    await queryInterface.removeColumn("results", "matchId");
-    await queryInterface.removeColumn("results", "roundId");
+    await queryInterface.removeColumn("rounds", "roundplayers");
+    await queryInterface.removeColumn("rounds", "cubeId");
+    await queryInterface.removeColumn("rounds", "rounddecks");
+    await queryInterface.removeColumn("rounds", "roundmatches");
+    await queryInterface.removeColumn("rounds", "roundresults");
+    await queryInterface.removeColumn("matches", "matchgame");
+    await queryInterface.removeColumn("matches", "matchplayers");
+    await queryInterface.removeColumn("matches", "matchdecks");
+    await queryInterface.removeColumn("matches", "matchresults");
+    await queryInterface.removeColumn("matches", "matchround");
+    await queryInterface.removeColumn("games", "gamematch");
+    await queryInterface.removeColumn("games", "gameresult");
+    await queryInterface.removeColumn("results", "gameresults");
+    await queryInterface.removeColumn("results", "matchresults");
+    await queryInterface.removeColumn("results", "roundresults");
   },
 };

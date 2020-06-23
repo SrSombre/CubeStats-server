@@ -1,15 +1,15 @@
 "use strict";
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("cubes", {
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.createTable("playerDecks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
+      date: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -22,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("cubes");
+    return queryInterface.dropTable("playerDecks");
   },
 };

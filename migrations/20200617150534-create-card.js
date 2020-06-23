@@ -46,7 +46,7 @@ module.exports = {
       },
       multiverse_id: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       rulings_uri: {
         allowNull: false,

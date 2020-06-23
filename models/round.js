@@ -9,10 +9,21 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   round.associate = function (models) {
-    round.hasMany(models.deck);
-    round.hasMany(models.player);
-    round.hasMany(models.match);
-    round.hasMany(models.result);
+    round.hasMany(models.deck, {
+      foreignKey: "rounddecks",
+    });
+    round.hasMany(models.player, {
+      foreignKey: "roundplayers",
+    });
+    round.hasMany(models.match, {
+      foreignKey: "roundmatches",
+    });
+    round.hasMany(models.result, {
+      foreignKey: "roundresults",
+    });
+    round.belongsTo(models.cube, {
+      foreignKey: "cubeId",
+    });
   };
   return round;
 };
