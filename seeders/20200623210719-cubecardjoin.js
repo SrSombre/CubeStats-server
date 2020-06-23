@@ -3,26 +3,35 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      "rounds",
+      "cubecardjoins",
       [
         {
-          id: 1,
-          cubeId: 1,
-          date: new Date(),
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          id: 2,
-          date: new Date(),
+          cardId: 1,
           cubeId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id: 3,
+          cardId: 2,
           cubeId: 1,
-          date: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cardId: 3,
+          cubeId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cardId: 4,
+          cubeId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cardId: 5,
+          cubeId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -32,6 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("rounds", null, {});
+    return queryInterface.bulkDelete("cubecardjoins", null, {});
   },
 };

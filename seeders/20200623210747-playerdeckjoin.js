@@ -3,59 +3,53 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      "decks",
+      "playerdeckjoins",
       [
         {
-          name: "BlackDeck",
-
+          playerId: 1,
+          deckId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "BlueDeck",
-
+          playerId: 2,
+          deckId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "GreenDeck",
-
+          playerId: 3,
+          deckId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "RedDeck",
-
+          playerId: 4,
+          deckId: 4,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "WhiteDeck",
-
+          playerId: 5,
+          deckId: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "ColorlessDeck",
-
+          playerId: 6,
+          deckId: 6,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "multicolorDeck",
-
+          playerId: 7,
+          deckId: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "5cGoodstuffDeck",
-
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: "SecondDeck",
-
+          playerId: 8,
+          deckId: 8,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -63,8 +57,7 @@ module.exports = {
       {}
     );
   },
-
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("decks", null, {});
+    return queryInterface.bulkDelete("playerdeckjoins", null, {});
   },
 };

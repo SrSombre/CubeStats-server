@@ -7,16 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  cube.associate = function (models) {
-    cube.hasMany(models.card, {
-      foreignKey: "cubecards",
-    });
-    cube.hasMany(models.deck, {
-      foreignKey: "cubedecks",
-    });
-    cube.hasMany(models.round, {
-      foreignKey: "cuberounds",
-    });
-  };
+  cube.associate = function (models) {};
   return cube;
 };

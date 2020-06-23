@@ -24,8 +24,6 @@ module.exports = {
           keywords: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          deckId: 1,
-          cubeId: 1,
         },
         {
           name: "Lightning Bolt",
@@ -46,8 +44,6 @@ module.exports = {
           keywords: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          deckId: 2,
-          cubeId: 1,
         },
         {
           name: "Dark Ritual",
@@ -68,8 +64,6 @@ module.exports = {
           keywords: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          deckId: 3,
-          cubeId: 1,
         },
         {
           name: "Giant Growth",
@@ -90,8 +84,6 @@ module.exports = {
           keywords: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          deckId: 4,
-          cubeId: 1,
         },
         {
           name: "Healing Salve",
@@ -112,8 +104,6 @@ module.exports = {
           keywords: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          deckId: 5,
-          cubeId: 1,
         },
       ],
       {}

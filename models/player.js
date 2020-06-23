@@ -19,16 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  player.associate = function (models) {
-    player.hasMany(models.deck, {
-      foreignKey: "playerdecks",
-    });
-    player.hasMany(models.match, {
-      foreignKey: "playermatches",
-    });
-    player.hasMany(models.round, {
-      foreignKey: "playerrounds",
-    });
-  };
+  player.associate = function (models) {};
   return player;
 };

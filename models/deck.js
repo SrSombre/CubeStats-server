@@ -7,22 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  deck.associate = function (models) {
-    deck.belongsTo(models.player, {
-      foreignKey: "playerId",
-    });
-    deck.hasMany(models.card, {
-      foreignKey: "deckcards",
-    });
-    deck.hasMany(models.match, {
-      foreignKey: "deckmatches",
-    });
-    deck.hasMany(models.round, {
-      foreignKey: "deckrounds",
-    });
-    deck.belongsTo(models.cube, {
-      foreignKey: "cubeId",
-    });
-  };
+  deck.associate = function (models) {};
   return deck;
 };
