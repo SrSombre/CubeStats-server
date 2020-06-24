@@ -8,12 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   cubecardjoin.associate = function (models) {
-    cubecardjoin.hasOne(models.card, {
-      foreignKey: "cardId",
-    });
-    cubecardjoin.hasOne(models.cube, {
-      foreignKey: "cubeId",
-    });
+    cubecardjoin.belongsTo(models.card);
+    cubecardjoin.belongsTo(models.cube);
   };
   return cubecardjoin;
 };

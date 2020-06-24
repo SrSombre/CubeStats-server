@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
-const Player = require("../models/").player;
+const Player = require("../models").player;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();

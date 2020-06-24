@@ -8,12 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   playerdeckjoin.associate = function (models) {
-    playerdeckjoin.hasOne(models.deck, {
-      foreignKey: "deckId",
-    });
-    playerdeckjoin.hasOne(models.player, {
-      foreignKey: "playerId",
-    });
+    playerdeckjoin.belongsTo(models.deck);
+    playerdeckjoin.belongsTo(models.player);
   };
   return playerdeckjoin;
 };

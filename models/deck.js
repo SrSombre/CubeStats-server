@@ -7,6 +7,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  deck.associate = function (models) {};
+  deck.associate = function (models) {
+    deck.belongsToMany(models.player, {
+      through: "playerdeckjoins",
+      foreignKey: "deckId",
+    });
+    deck.belongsToMany(models.cube, {
+      through: "cubedeckjoins",
+      foreignKey: "deckId",
+    });
+    deck.belongsToMany(models.card, {
+      through: "deckcardjoins",
+      foreignKey: "deckId",
+    });
+  };
   return deck;
 };
