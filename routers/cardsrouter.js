@@ -16,4 +16,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const card = await Card.findByPk(id);
+    res.send(card);
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;
