@@ -3,15 +3,19 @@ module.exports = (sequelize, DataTypes) => {
   const cube = sequelize.define(
     "cube",
     {
-      name: DataTypes.STRING,
-      allowNull: false,
+      name: { type: DataTypes.STRING, allowNull: false },
     },
     {}
   );
   cube.associate = function (models) {
-    cube.hasMany(models.card);
-    cube.hasMany(models.deck);
-    cube.hasMany(models.round);
+    cube.belongsToMany(models.deck, {
+      through: "cubedeckjoins",
+      foreignKey: "cubeId",
+    });
+    cube.belongsToMany(models.card, {
+      through: "cubecardjoins",
+      foreignKey: "cubeId",
+    });
   };
   return cube;
 };

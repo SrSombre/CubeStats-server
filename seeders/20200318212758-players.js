@@ -8,16 +8,58 @@ module.exports = {
       "players",
       [
         {
-          name: "testplayer",
-          email: "test@test.com",
-          password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+          name: "player1",
+          email: "player1",
+          password: bcrypt.hashSync("player1", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "dummy",
-          email: "a@a.com",
-          password: bcrypt.hashSync("a", SALT_ROUNDS),
+          name: "player2",
+          email: "player2",
+          password: bcrypt.hashSync("player2", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player3",
+          email: "player3",
+          password: bcrypt.hashSync("player3", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player4",
+          email: "player4",
+          password: bcrypt.hashSync("player4", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player5",
+          email: "player5",
+          password: bcrypt.hashSync("player5", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player6",
+          email: "player6",
+          password: bcrypt.hashSync("player6", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player7",
+          email: "player7",
+          password: bcrypt.hashSync("player7", SALT_ROUNDS),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "player8",
+          email: "player8",
+          password: bcrypt.hashSync("player8", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -27,6 +69,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("users", null, {});
+    return queryInterface.bulkDelete("players", null, {});
   },
 };
