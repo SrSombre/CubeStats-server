@@ -6,6 +6,7 @@ const authRouter = require("./routers/auth");
 const cardsrouter = require("./routers/cardsrouter");
 const decksrouter = require("./routers/decksrouter");
 const authMiddleWare = require("./auth/middleware");
+const playersrouter = require("./routers/player");
 
 const app = express();
 
@@ -155,6 +156,7 @@ app.post("/authorized_post_request", authMiddleWare, (req, res) => {
 app.use("/", authRouter);
 app.use("/cards", cardsrouter);
 app.use("/decks", decksrouter);
+app.use("/players", playersrouter);
 
 // Listen for connections on specified port (default is port 4000)
 

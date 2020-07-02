@@ -8,14 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   deck.associate = function (models) {
-    deck.belongsToMany(models.player, {
-      through: "playerdeckjoins",
-      foreignKey: "deckId",
-    });
-    deck.belongsToMany(models.cube, {
-      through: "cubedeckjoins",
-      foreignKey: "deckId",
-    });
+    deck.belongsTo(models.player);
+    deck.belongsTo(models.cube);
     deck.belongsToMany(models.card, {
       through: "deckcardjoins",
       foreignKey: "deckId",

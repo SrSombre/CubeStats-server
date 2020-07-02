@@ -8,10 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   cube.associate = function (models) {
-    cube.belongsToMany(models.deck, {
-      through: "cubedeckjoins",
-      foreignKey: "cubeId",
-    });
+    cube.hasMany(models.deck);
     cube.belongsToMany(models.card, {
       through: "cubecardjoins",
       foreignKey: "cubeId",

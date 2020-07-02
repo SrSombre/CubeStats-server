@@ -20,10 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   player.associate = function (models) {
-    player.belongsToMany(models.deck, {
-      through: "playerdeckjoins",
-      foreignKey: "playerId",
-    });
+    player.hasMany(models.deck);
   };
 
   return player;
