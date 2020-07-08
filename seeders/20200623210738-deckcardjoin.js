@@ -18,7 +18,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          cardId: 3,
+          cardId: 50,
           deckId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),

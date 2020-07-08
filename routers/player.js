@@ -12,24 +12,20 @@ router.get("/:userId/stats/", async (req, res) => {
     where: { playerId: req.params.userId },
     include: { model: Card },
   });
-  const stats = playerDecks.rows.reduce((deckStatsAll, deck) => {
-    console.log(deck);
-    const deckColors = deck.cards.reduce(
-      (deckStats, card) => {
-        console.log(card);
-        if (card.colors === "{W}" || card.colors === "{U}") {
-          deckStats[card.colors] = deckStats[card.colors] + 1;
-        }
-        return deckStats;
+
+  const decksWithStats = playerDecks.rows.map((deck) => {
+    const stats = deck.cards.reduce(
+      (acc, card) => {
+        const cardColor = card.colors;
+        acc[cardColor] = acc[cardColor] + 1;
+        return acc;
       },
-      {
-        "{W}": 0,
-        "{U}": 0,
-      }
+      { "{W}": 0, "{U}": 0, "{B}": 0, "{R}": 0, "{G}": 0 }
     );
-    console.log(deckColors);
+    return { deck, stats };
   });
-  console.log(playerDecks);
+
+  console.log(decksWithStats);
   res.send(playerDecks);
 });
 
